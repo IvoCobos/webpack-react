@@ -1,8 +1,9 @@
+const path = require('path');
 const clientPath = path.resolve(__dirname, "client");
 const serverPath = path.resolve(__dirname, "server");
 
 module.exports = (CopyPlugin) => ({
-	entry: clientPath +'src/index.js',
+	entry: clientPath +'/src/index.js',
 	mode: 'development',
 	module: {
 		rules: [
@@ -32,15 +33,15 @@ module.exports = (CopyPlugin) => ({
 		new CopyPlugin({
 			patterns: [
 				{
-					from: clientPath + 'public',
-					to: serverPath + 'public'
+					from: clientPath + '/public',
+					to: serverPath + '/public'
 				}
 			]
 		})
 	],
 	optimization: {},
 	output: {
-		path: serverPath + 'public',
+		path: serverPath + '/public',
 		filename: 'app.js'
 	},
 });
