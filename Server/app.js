@@ -1,15 +1,17 @@
 const webpack = require("webpack");
+const CopyPlugin = require("copy-webpack-plugin");
 const middleware = require("webpack-dev-middleware");
+const webpackConfig = require("../webpack.config.js")(CopyPlugin);
 
 const compiler = webpack(
-    require("../webpack.config")
+    webpackConfig,
 );
 const express = require("express");
 const app = express();
 
 app.use(
   middleware(compiler, {
-    // webpack-dev-middleware options
+    publicPath: webpackConfig.output.publicPath,
   })
 );
 

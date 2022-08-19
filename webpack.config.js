@@ -1,12 +1,8 @@
-const CopyPlugin = require("copy-webpack-plugin");
+const clientPath = path.resolve(__dirname, "client");
+const serverPath = path.resolve(__dirname, "server");
 
-module.exports = {
-	entry: './src/index.js',
-	devServer: {
-    static: {directory: __dirname + 'dist'},
-    compress: true,
-    port: 8080,
-  },
+module.exports = (CopyPlugin) => ({
+	entry: clientPath +'src/index.js',
 	mode: 'development',
 	module: {
 		rules: [
@@ -36,18 +32,18 @@ module.exports = {
 		new CopyPlugin({
 			patterns: [
 				{
-					from: __dirname + '/public',
-					to: __dirname + '/dist'
+					from: clientPath + 'public',
+					to: serverPath + 'public'
 				}
 			]
 		})
 	],
 	optimization: {},
 	output: {
-		path: __dirname + '/dist',
+		path: serverPath + 'public',
 		filename: 'app.js'
 	},
-};
+});
 
 
 
